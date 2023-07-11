@@ -18,6 +18,7 @@ const stringIsAValidUrl = (s) => {
   }
 };
 
+
 /* subscribe to a channel */
 router.post('/add', async function (req, res, next) {
   res.type('application/json');
@@ -37,11 +38,11 @@ router.post('/add', async function (req, res, next) {
         await client.connect();
         var queryString = `INSERT INTO public.subscriptions (channel, callback, host) VALUES('${obj.channel.toLowerCase()}', '${obj.callback.toLowerCase()}', '${urlhost}') returning *;`
         var query = client.query(queryString, function (error, result) {
-          if (!error){
-          var retVal = {"subscription_id": result.rows[0].resource_id}
-          res.send(retVal)
+          if (!error) {
+            var retVal = { "subscription_id": result.rows[0].resource_id }
+            res.send(retVal)
           }
-          else{
+          else {
             res.status(400);
             res.send('Only one subscription per channel per host is allowed.')
           }

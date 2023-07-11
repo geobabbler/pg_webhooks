@@ -6,7 +6,8 @@
   "license": "BSD-3-Clause",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "run": "node server.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -16,6 +17,7 @@
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "morgan": "~1.9.1",
+    "node-fetch": "^2.6.12",
     "pg": "^8.11.1"
   },
   "repository": {
