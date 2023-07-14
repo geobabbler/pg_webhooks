@@ -26,6 +26,14 @@ The app returns a unique ID for the subscription. In a future version, this ID w
 
 The app does not currently validate the callback URL. URLs that fail will die quietly. In a future version, a failure count threshold will be implemented to disable listeners that routinely fail.
 
+## Webhook Payloads ##
+
+The application will always wrap the output it receives from the NOTIFY event into a JSON object with a single property called 'payload'. If the output is a JSON formatted string, the application will parse it before wrapping to ensure a proper JSON object is returned. If the output is arbitrary text, it will be wrapped as-is.
+
+Arbitrary text: Outsput 'some text' will be returned as {payload: "some text"}
+
+JSON string: Output '{"output": "some text"}' will be returned as {payload: {output: "some text"}}
+
 
 
 Thanks for your interest. Check backs for updates.

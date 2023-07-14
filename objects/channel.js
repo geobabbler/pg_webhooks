@@ -52,10 +52,21 @@ const Listener = {
                     //console.log(`LISTEN "${l.channelName}"`)
                     client.query(`LISTEN "${l.channelName}"`)
                     client.on('notification', function (data) {
-                        console.log(data.payload);
+                        //console.log(data.payload);
+                        var o = null;
+                        var payload = null;
+                        try {
+                            o = JSON.parse(data.payload);
+                            payload = { payload: o }
+                        }
+                        catch (e) {
+                            //console.log(e)
+                            payload = { payload: data.payload }
+                        }
+                        //console.log(payload);
                         fetch(l.callback, {
                             method: 'POST',
-                            body: data.payload, //JSON.stringify(eval(data.payload)),
+                            body: JSON.stringify(payload), //JSON.stringify(eval(data.payload)),
                             headers: { 'Content-Type': 'application/json' }
                         }).then(res => res.json())
                             .then(json => console.log(json));
