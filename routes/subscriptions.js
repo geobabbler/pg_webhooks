@@ -66,8 +66,36 @@ router.post('/add', async function (req, res, next) {
 
 /* unsubscribe from a channel */
 router.post('/remove', function (req, res, next) {
+  const id = req.query.id;
   res.type('application/json');
-  res.send('remove a subscription');
+  var client = new pg.Client({
+    user: process.env.PGUSER,
+    host: process.env.PGSERVER,
+    database: process.env.PGDATABASE,
+    password: process.env.PGPASS,
+    port: 5432,
+  });
+  client.connect(function (err) {
+    if (!err) {
+      var queryString = `delete from subscriptions where resource_id = '${id}';`;
+      var query = client.query(queryString, function (error, result) {
+        if (!error) {
+          res.status(200);
+          res.send({ status: "OK", message: "Unsubscribe successful." });
+        }
+        else {
+          res.status(401);
+          res.send({ status: "Error", message: "Unsubscribe not successful." });
+        }
+      });
+    }
+    else {
+      res.status(501);
+      res.send({ status: "Error", message: "Unknown error occurred." });
+    }
+  });
+
+  //res.send('remove a subscription');
 });
 
 module.exports = router;

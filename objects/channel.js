@@ -87,11 +87,13 @@ function loadChannelListeners(channel) {
             var query = client.query(queryString, function (error, result) {
                 if (!error) {
                     for (i in result.rows) {
-                        var l = Object.create(Listener);
-                        l.init(result.rows[i].channel, result.rows[i].callback, result.rows[i].resource_id);
-                        console.log(l)
-                        l.watch();
-                        channel.listeners.push(l);
+                        if (result.rows[i].active) {
+                            var l = Object.create(Listener);
+                            l.init(result.rows[i].channel, result.rows[i].callback, result.rows[i].resource_id);
+                            //console.log(l)
+                            l.watch();
+                            channel.listeners.push(l);
+                        }
                     }
                 }
                 else {
