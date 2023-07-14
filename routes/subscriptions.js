@@ -6,12 +6,20 @@ var dotenv = require('dotenv').config();
 const URL = require("url").URL;
 const url = require("url");
 
+var env = process.env.NODE_ENV || 'development';
+
 //var dbUrl = 'tcp://postgres:psw@localhost:5432/test-db';
 
 const stringIsAValidUrl = (s) => {
   try {
     var ss = new URL(s.toLowerCase());
-    const protocols = ['http:', 'https:'];
+    var protocols = [];
+    if (env === 'development') {
+      protocols = ['http:', 'https:'];
+    }
+    else{
+      protocols = ['https:'];
+    }
     return protocols.includes(ss.protocol);
   } catch (err) {
     return false;
@@ -94,8 +102,6 @@ router.post('/remove', function (req, res, next) {
       res.send({ status: "Error", message: "Unknown error occurred." });
     }
   });
-
-  //res.send('remove a subscription');
 });
 
 module.exports = router;
