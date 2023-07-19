@@ -36,7 +36,7 @@ JSON string: Output '{"output": "some text"}' will be returned as {payload: {out
 
 ## Failure Management ##
 
-If a webhook callback fails three consecutive times, or the value of the MAXFAILS environment variable, that callback will be disabled. It can only be re-enabled at the database level. This is by design. To do this, the administratotr will reset the "failcount" field to 0 and the "active" field to true.
+If a webhook callback fails three consecutive times, or the value of the MAXFAILS environment variable, that callback will be disabled. It can only be re-enabled at the database level. This is by design. To do this, the administrator will reset the "failcount" field to 0 and the "active" field to true.
 
 
 
