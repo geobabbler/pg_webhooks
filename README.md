@@ -10,7 +10,7 @@ The application is an express web app. Clone the repo and do 'npm install' (or u
 
 Use 'database/subscriptions.sql' to create the table that will store subscriptions. The application currently assumes the table will be in the public schema. The option to specify the schema will come later. The .sql file takes care of all of the necessary keys and constraints. The database enforces a unique constraint on the combination of channel and host in order to minimize the risk of the application being exploited for DDOS. This approach is not perfect.
 
-The columns 'active' and 'failcount' are reserved for future use in failure management.
+The columns 'active' and 'failcount' are discussed in the failure management section below.
 
 ### Environment ###
 
