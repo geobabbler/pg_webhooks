@@ -42,4 +42,4 @@ If a webhook callback fails three consecutive times, or the value of the MAXFAIL
 
 
 
-Thanks for your interest. Check backs for updates.
+Thanks for your interest. Check back for updates.
