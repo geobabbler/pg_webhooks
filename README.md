@@ -18,11 +18,13 @@ The application include a sample .env file showing the environment variables use
 
 ## Usage ##
 
+Assuming the previous configuration steps have been completed successfully, the project can be run with "npm start".
+
 When running, the application accepts a POST to 'subscriptions/add' to register a new listener. The POST data will be a JSON document that looks like:
 
 {"channel":"channel_name", "callback": "https://some.host.com/some/path"}
 
-The app returns a unique ID for the subscription. In a future version, this ID will be appended to all webhook payloads so that listeners may validate that the payload originated from the app.
+The app returns a unique ID for the subscription. In a future version, this ID is returned in the "X-ApiToken" HTTP header of the webhook payload so that listeners may validate that the payload originated from the app.
 
 The app does not currently validate the callback URL. URLs that fail will die quietly. In a future version, a failure count threshold will be implemented to disable listeners that routinely fail.
 
