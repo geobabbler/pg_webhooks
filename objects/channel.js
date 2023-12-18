@@ -74,7 +74,7 @@ const Listener = {
                                 response = await fetch(l.callback, {
                                     method: 'POST',
                                     body: JSON.stringify(payload), //JSON.stringify(eval(data.payload)),
-                                    headers: { 'Content-Type': 'application/json' }
+                                    headers: { 'Content-Type': 'application/json', 'X-ApiToken': l.id }
                                 });
                             } catch (error) {
                                 console.log('There was an error', error);
